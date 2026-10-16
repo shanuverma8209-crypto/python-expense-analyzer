@@ -1,0 +1,15 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('expenses.csv')
+df['Date'] = pd.to_datetime(df['Date'])
+
+print("Total Expense:", df['Amount'].sum())
+print("\nCategory wise:")
+print(df.groupby('Category')['Amount'].sum())
+
+df.groupby('Category')['Amount'].sum().plot(kind='bar', color='skyblue')
+plt.title('Python Expense Analyzer - MCA Project')
+plt.ylabel('Amount (Rs)')
+plt.savefig('chart.png')
+plt.show()
